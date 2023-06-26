@@ -5,13 +5,13 @@ import React from "react";
 // import "./ComponentsCss/Home.css";
 // import AboutUs from "./Components/AboutUs";
 // import { Routes, Route } from "react-router-dom";
-
-import MyPromiseAllPolyfill from './Components/PromiseAllPollyfill';
-import "./ComponentsCss/PromiseAll.css";
+//import MyPromiseAllPolyfill from './Components/PromiseAllPollyfill';
+//import "./ComponentsCss/PromiseAll.css";
+import InputForm from "./Components/inputForm/inputform";
 
 function App() {
   return  <>
-    <MyPromiseAllPolyfill/>
+    <InputForm/>
       {/* <div>This is my header</div>
       <Routes>
         <Route path="/" element={<HomePage />} />
