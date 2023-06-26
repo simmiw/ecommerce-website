@@ -1,0 +1,11 @@
+@media screen and (max-width: 500px) {
+    body {
+      background-color: lightgreen;
+    }
+  }
+
+.response{
+    height: 100px;
+    width: 30px;
+    display: inline;
+}
