@@ -1,23 +1,19 @@
 import React from "react";
-// import ProductList from "./Components/ProductList";
-// import "./ComponentsCss/ProductList.css";
-// import HomePage from "./Components/HomePage";
-// import "./ComponentsCss/Home.css";
-// import AboutUs from "./Components/AboutUs";
-// import { Routes, Route } from "react-router-dom";
-//import MyPromiseAllPolyfill from './Components/PromiseAllPollyfill';
-//import "./ComponentsCss/PromiseAll.css";
-import InputForm from "./Components/inputForm/inputform";
+import { Routes, Route } from "react-router-dom";
+import ProductList from "./components/product-list/ProductList";
+ import "./components/product-list/ProductList.css";
+ import HomePage from "./components/home-page/HomePage";
+ import "./components/home-page/HomePage.css"
+import AboutUs from "./components/aboutus-page/AboutUsPage";
 
+  
 function App() {
   return  <>
-    <InputForm/>
-      {/* <div>This is my header</div>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage/>} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/productspage/:productType" element={<ProductList />} />
-      </Routes> */}
+        <Route path="/productspage/" element={<ProductList />} />
+      </Routes> 
     </>
 
 }

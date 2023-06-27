@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
-  let [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get("name"));
-  const {productType} = useParams();
-  console.log("productType", productType)
   const [products, setProducts] = useState([]);
   const [selectedItems, setSelectedItems] = useState("All");
   const [sortedByPrice, setSortedByPrice] = useState("");
@@ -42,28 +38,32 @@ const ProductList = () => {
       default:
         break;
     }
-  }, [sortedByPrice]);
+  }, [sortedByPrice, products]);
 
-  useEffect(()=>{
-  switch(sortedByRating){
-    case "morethan4":{
-      const sortedProducts = [...products]
-      sortedProducts.sort((a,b)=>{
-        return a.rating-b.rating; });
-      setSortedByRating(sortedProducts);
+  useEffect(() => {
+    switch (sortedByRating) {
+      case "morethan4":
+        {
+          const sortedProducts = [...products];
+          sortedProducts.sort((a, b) => {
+            return a.rating - b.rating;
+          });
+          setSortedByRating(sortedProducts);
+        }
+        break;
+      case "lessthan4":
+        {
+          const sortedProducts = [...products];
+          sortedProducts.sort((a, b) => {
+            return b.rating - a.rating;
+          });
+          setSortedByRating(sortedProducts);
+        }
+        break;
+      default:
+        break;
     }
-    break;
-    case "lessthan4":{
-      const sortedProducts = [...products]
-      sortedProducts.sort((a,b)=>{
-        return b.rating-a.rating });
-    setSortedByRating(sortedProducts);
-  }
-  break;
-  default:
-    break;
-}
- }, [sortedByRating]);
+  }, [sortedByRating, products]);
 
   const filterSelectedItems = (event) => {
     setSelectedItems(event.target.value);
@@ -78,7 +78,7 @@ const ProductList = () => {
   return (
     <>
       <h1 className="header">Product Listing Page</h1>
-      <Link to={'/productspage/phiphi?selected=apple&name=simmi'}>GOTO</Link>
+      <Link to={"/productspage"}></Link>
       <div className="all-items">
         <div className="filters">
           <select
@@ -107,9 +107,12 @@ const ProductList = () => {
             value={sortedByRating}
             onChange={filterByRating}
           >
-          <option value="" disabled> Sort By Rating</option>
-          <option value="morethan4"> More Than 4</option>
-          <option value="lessthan4">Less Than 4</option>
+            <option value="" disabled>
+              {" "}
+              Sort By Rating
+            </option>
+            <option value="morethan4"> More Than 4</option>
+            <option value="lessthan4">Less Than 4</option>
           </select>
         </div>
         <div className="list-items">
@@ -120,7 +123,7 @@ const ProductList = () => {
             ) {
               return (
                 <div className="product-item" key={item.id}>
-                  <img className="img" src={item.thumbnail} />
+                  <img className="img" src={item.thumbnail} alt={item.title} />
                   <div>Product: {item.title}</div>
                   <div>Brand: {item.brand}</div>
                   <div>Price: ${item.price}</div>

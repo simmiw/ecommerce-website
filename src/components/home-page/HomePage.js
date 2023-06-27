@@ -21,6 +21,7 @@ const HomePage = () => {
           src={
             " https://img.freepik.com/free-vector/modern-devices-isometric-icons-collection-with-sixteen-isolated-images-computers-periphereals-various-consumer-electronics-illustration_1284-29118.jpg?w=740&t=st=1686140126~exp=1686140726~hmac=b5b4ad3cb9a71bebd46fd0483ce1f20f43fc6e1a1b6d6c179ec57d6db0561e94"
           }
+          alt="homepage"
           width="100%"
           height="600px"
         />
