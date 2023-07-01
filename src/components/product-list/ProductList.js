@@ -13,7 +13,7 @@ const ProductList = () => {
       .then((response) => {
         setProducts(response.products);
       });
-  }, []);
+  }, [setProducts]);
 
   useEffect(() => {
     switch (sortedByPrice) {
