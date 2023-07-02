@@ -1,19 +1,8 @@
-.all-items{
-  padding: 0px 16px 16px 16px;
-}
-
-.header {
-  text-align: center;
-  padding: 8px;
-  margin-top: 0px 4px 4px 0;
-  background-color: #a58a8a;
-  color: #f8f5f5;
-}
-
-.price-sorting{
+.price-sorting {
   margin-left: 8px;
 }
-.rating-sorting{
+
+.rating-sorting {
   margin-left: 8px;
 }
 

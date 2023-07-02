@@ -1,16 +1,18 @@
-.webpage {
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  padding: 8px;
-  margin: 2px 35px 4px 20px;
+  padding: 16px;
   background-color: rgb(160, 191, 146);
 }
 
-.about-us-page {
-  display: inline-block;
-  margin-left: 80px;
+.header-link {
+  margin-right: 16px;
 }
 
-.product-list {
-  display: inline-block;
-  margin-left: 1px;
+.content-container {
+  padding: 8px 16px;
 }
