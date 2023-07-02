@@ -77,67 +77,64 @@ const ProductList = () => {
   };
   return (
     <>
-      <Link to={"/"}></Link>
-      <div className="all-items">
-        <div className="filters">
-          <select
-            className="list"
-            value={selectedItems}
-            onChange={filterSelectedItems}
-          >
-            <option value="All">All Products</option>
-            <option value="Samsung">Samsung</option>
-            <option value="Apple">Apple</option>
-            <option value="OPPO">Oppo</option>
-          </select>
-          <select
-            className="price-sorting"
-            value={sortedByPrice}
-            onChange={filterByPrice}
-          >
-            <option value="" disabled>
-              Sort by Price
-            </option>
-            <option value="ascending">Min-Max</option>
-            <option value="descending">Max-Min</option>
-          </select>
-          <select
-            className="rating-sorting"
-            value={sortedByRating}
-            onChange={filterByRating}
-          >
-            <option value="" disabled>
-              {" "}
-              Sort By Rating
-            </option>
-            <option value="morethan4"> More Than 4</option>
-            <option value="lessthan4">Less Than 4</option>
-          </select>
-        </div>
-        <div className="list-items">
-          {products.map(function (item) {
-            if (
-              selectedItems === "All" ||
-              selectedItems.toLowerCase() === item.brand.toLowerCase()
-            ) {
-              return (
-                <Link
-                  to={`/product/${item.id}`}
-                  className="product-item"
-                  key={item.id}
-                >
-                  <img className="img" src={item.thumbnail} alt={item.title} />
-                  <div>Product: {item.title}</div>
-                  <div>Brand: {item.brand}</div>
-                  <div>Price: ${item.price}</div>
-                  <div>Rating: {item.rating}</div>
-                </Link>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </div>
+      <div className="filters">
+        <select
+          className="list"
+          value={selectedItems}
+          onChange={filterSelectedItems}
+        >
+          <option value="All">All Products</option>
+          <option value="Samsung">Samsung</option>
+          <option value="Apple">Apple</option>
+          <option value="OPPO">Oppo</option>
+        </select>
+        <select
+          className="price-sorting"
+          value={sortedByPrice}
+          onChange={filterByPrice}
+        >
+          <option value="" disabled>
+            Sort by Price
+          </option>
+          <option value="ascending">Min-Max</option>
+          <option value="descending">Max-Min</option>
+        </select>
+        <select
+          className="rating-sorting"
+          value={sortedByRating}
+          onChange={filterByRating}
+        >
+          <option value="" disabled>
+            {" "}
+            Sort By Rating
+          </option>
+          <option value="morethan4"> More Than 4</option>
+          <option value="lessthan4">Less Than 4</option>
+        </select>
+      </div>
+      <div className="list-items">
+        {products.map(function (item) {
+          if (
+            selectedItems === "All" ||
+            selectedItems.toLowerCase() === item.brand.toLowerCase()
+          ) {
+            return (
+              <Link
+                to={`/product/${item.id}`}
+                className="product-item"
+                key={item.id}
+              >
+                <img className="img" src={item.thumbnail} alt={item.title} />
+                <div>Product: {item.title}</div>
+                <div>Brand: {item.brand}</div>
+                <div>Price: ${item.price}</div>
+                <div>Rating: {item.rating}</div>
+              </Link>
+            );
+          } else {
+            return null;
+          }
+        })}
       </div>
     </>
   );
