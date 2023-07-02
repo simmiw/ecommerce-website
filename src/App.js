@@ -1,21 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import ProductList from "./components/product-list/ProductList";
- import "./components/product-list/ProductList.css";
- import HomePage from "./components/home-page/HomePage";
- import "./components/home-page/HomePage.css"
+import "./components/product-list/ProductList.css";
 import AboutUs from "./components/aboutus-page/AboutUsPage";
+import "./App.css";
+import ProductDetails from "./components/product-details-page/ProductDetails";
 
-  
 function App() {
-  return  <>
+  return (
+    <>
+      <div className="webpage">
+        <Link to="/">
+          <div className="product-list">Products</div>
+        </Link>
+        <Link to="/aboutus">
+          <div className="about-us-page">About Us</div>
+        </Link>
+      </div>
       <Routes>
-        <Route path="/" element={<HomePage/>} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/productspage/" element={<ProductList />} />
-      </Routes> 
+        <Route path="/" element={<ProductList />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+      </Routes>
     </>
-
+  );
 }
 
 export default App;
