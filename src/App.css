@@ -1,50 +1,16 @@
-.App {
-  text-align: center;
+.webpage {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 8px;
+  margin: 2px 35px 4px 20px;
+  background-color: rgb(160, 191, 146);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.aboutUs-page {
+  display: inline-block;
+  margin-left: 80px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.produtslist {
+  display: inline-block;
+  margin-left: 1px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.todo-list {
-  border: 1px solid rgb(52, 52, 115);
-  margin: 2px;
-  padding: 2px;
-}
-
-.char-input {
-  margin-bottom: 8px;
-}
-

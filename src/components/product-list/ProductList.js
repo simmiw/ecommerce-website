@@ -77,8 +77,7 @@ const ProductList = () => {
   };
   return (
     <>
-      <h1 className="header">Product Listing Page</h1>
-      <Link to={"/productspage"}></Link>
+      <Link to={"/"}></Link>
       <div className="all-items">
         <div className="filters">
           <select
@@ -122,13 +121,17 @@ const ProductList = () => {
               selectedItems.toLowerCase() === item.brand.toLowerCase()
             ) {
               return (
-                <div className="product-item" key={item.id}>
+                <Link
+                  to={`/product/${item.id}`}
+                  className="product-item"
+                  key={item.id}
+                >
                   <img className="img" src={item.thumbnail} alt={item.title} />
                   <div>Product: {item.title}</div>
                   <div>Brand: {item.brand}</div>
                   <div>Price: ${item.price}</div>
                   <div>Rating: {item.rating}</div>
-                </div>
+                </Link>
               );
             } else {
               return null;
