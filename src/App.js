@@ -12,10 +12,10 @@ function App() {
     <>
       <div className="webpage">
         <Link to="/">
-          <div className="produtslist">Products</div>
+          <div className="product-list">Products</div>
         </Link>
         <Link to="/aboutus">
-          <div className="aboutUs-page">About Us</div>
+          <div className="about-us-page">About Us</div>
         </Link>
       </div>
       <Routes>
