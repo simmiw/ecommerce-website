@@ -1,0 +1,12 @@
+.all-items {
+  display: flex;
+}
+
+.product-info {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.detail-label {
+  font-weight: bold;
+}
