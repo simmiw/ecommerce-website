@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./ProductList.scss";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -124,7 +125,7 @@ const ProductList = () => {
                 className="product-item"
                 key={item.id}
               >
-                <img className="img" src={item.thumbnail} alt={item.title} />
+                <img src={item.thumbnail} alt={item.title} />
                 <div>Product: {item.title}</div>
                 <div>Brand: {item.brand}</div>
                 <div>Price: ${item.price}</div>

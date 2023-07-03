@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import "normalize.css";
 import ProductList from "./components/product-list/ProductList";
-import "./components/product-list/ProductList.css";
 import AboutUs from "./components/about-us/AboutUs";
-import "./App.css";
+import "./App.scss";
 import ProductDetails from "./components/product-details/ProductDetails";
 
 function App() {
