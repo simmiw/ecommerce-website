@@ -3,10 +3,16 @@ import { Link } from "react-router-dom";
 import "./ProductList.scss";
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  const [selectedItems, setSelectedItems] = useState("All");
+  const [products, setProducts] = useState(null);
+  const [selectedBrand, setSelectedBrand] = useState("All");
   const [sortedByPrice, setSortedByPrice] = useState("");
-  const [sortedByRating, setSortedByRating] = useState("");
+  const [filteredByRating, setfilteredByRating] = useState("");
+  const [searchInputtext, setSearchlnputText] = useState("");
+  const [displayItems, setDisplayItems] = useState(null);
+
+  const onInputChange = (event) => {
+    setSearchlnputText(event.target.value);
+  };
 
   useEffect(() => {
     fetch("https://dummyjson.com/products")
@@ -17,125 +23,124 @@ const ProductList = () => {
   }, [setProducts]);
 
   useEffect(() => {
+    if (!products) {
+      return;
+    }
+    let filteredProducts;
+
+    if (!selectedBrand || selectedBrand === "All") {
+      filteredProducts = products;
+    } else {
+      filteredProducts = products.filter((item) => {
+        return item.brand.toLowerCase() === selectedBrand.toLowerCase();
+      });
+    }
+
+    if (filteredByRating === "morethan4") {
+      filteredProducts = filteredProducts.filter((item) => {
+        return item.rating >= 4.5;
+      });
+    }
+    if (filteredByRating === "lessthan4") {
+      filteredProducts = filteredProducts.filter((item) => {
+        return item.rating < 4.5;
+      });
+    }
+    if (searchInputtext !== "") {
+      const searchText = searchInputtext.toLowerCase();
+      filteredProducts = filteredProducts.filter((item) => {
+        return item.title.toLowerCase().includes(searchText);
+      });
+    }
+
+    setDisplayItems(filteredProducts);
+  }, [selectedBrand, products, searchInputtext, filteredByRating]);
+
+  useEffect(() => {
     switch (sortedByPrice) {
       case "ascending":
         {
-          const sortedProducts = [...products];
+          const sortedProducts = [...displayItems];
           sortedProducts.sort((a, b) => {
             return a.price - b.price;
           });
-          setProducts(sortedProducts);
+          setDisplayItems(sortedProducts);
         }
         break;
       case "descending":
         {
-          const sortedProducts = [...products];
+          const sortedProducts = [...displayItems];
           sortedProducts.sort((a, b) => {
             return b.price - a.price;
           });
-          setProducts(sortedProducts);
+          setDisplayItems(sortedProducts);
         }
         break;
       default:
         break;
     }
-  }, [sortedByPrice, products]);
-
-  useEffect(() => {
-    switch (sortedByRating) {
-      case "morethan4":
-        {
-          const sortedProducts = [...products];
-          sortedProducts.sort((a, b) => {
-            return a.rating - b.rating;
-          });
-          setSortedByRating(sortedProducts);
-        }
-        break;
-      case "lessthan4":
-        {
-          const sortedProducts = [...products];
-          sortedProducts.sort((a, b) => {
-            return b.rating - a.rating;
-          });
-          setSortedByRating(sortedProducts);
-        }
-        break;
-      default:
-        break;
-    }
-  }, [sortedByRating, products]);
+  }, [sortedByPrice, displayItems]);
 
   const filterSelectedItems = (event) => {
-    setSelectedItems(event.target.value);
+    setSelectedBrand(event.target.value);
   };
 
   const filterByPrice = (event) => {
     setSortedByPrice(event.target.value);
   };
   const filterByRating = (event) => {
-    setSortedByRating(event.target.value);
+    setfilteredByRating(event.target.value);
   };
   return (
     <>
-      <div className="filters">
-        <select
-          className="list"
-          value={selectedItems}
-          onChange={filterSelectedItems}
-        >
-          <option value="All">All Products</option>
-          <option value="Samsung">Samsung</option>
-          <option value="Apple">Apple</option>
-          <option value="OPPO">Oppo</option>
-        </select>
-        <select
-          className="price-sorting"
-          value={sortedByPrice}
-          onChange={filterByPrice}
-        >
-          <option value="" disabled>
-            Sort by Price
-          </option>
-          <option value="ascending">Min-Max</option>
-          <option value="descending">Max-Min</option>
-        </select>
-        <select
-          className="rating-sorting"
-          value={sortedByRating}
-          onChange={filterByRating}
-        >
-          <option value="" disabled>
-            {" "}
-            Sort By Rating
-          </option>
-          <option value="morethan4"> More Than 4</option>
-          <option value="lessthan4">Less Than 4</option>
-        </select>
+      <div className="all-filters">
+        <input
+          type="text"
+          value={searchInputtext}
+          placeholder="Search product"
+          onChange={onInputChange}
+        />
+        <span className="filters">
+          <select value={selectedBrand} onChange={filterSelectedItems}>
+            <option value="All">All Products</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Apple">Apple</option>
+            <option value="OPPO">Oppo</option>
+          </select>
+          <select value={sortedByPrice} onChange={filterByPrice}>
+            <option value="" disabled>
+              Sort by Price
+            </option>
+            <option value="ascending">Min-Max</option>
+            <option value="descending">Max-Min</option>
+          </select>
+          <select value={filteredByRating} onChange={filterByRating}>
+            <option value="" disabled>
+              Sort By Rating
+            </option>
+            <option value="morethan4"> More Than 4</option>
+            <option value="lessthan4">Less Than 4</option>
+          </select>
+        </span>
       </div>
       <div className="list-items">
-        {products.map(function (item) {
-          if (
-            selectedItems === "All" ||
-            selectedItems.toLowerCase() === item.brand.toLowerCase()
-          ) {
-            return (
-              <Link
-                to={`/product/${item.id}`}
-                className="product-item"
-                key={item.id}
-              >
-                <img src={item.thumbnail} alt={item.title} />
-                <div>Product: {item.title}</div>
-                <div>Brand: {item.brand}</div>
-                <div>Price: ${item.price}</div>
-                <div>Rating: {item.rating}</div>
-              </Link>
-            );
-          } else {
-            return null;
-          }
-        })}
+        {displayItems
+          ? displayItems.map(function (item) {
+              return (
+                <Link
+                  to={`/product/${item.id}`}
+                  className="product-item"
+                  key={item.id}
+                >
+                  <img src={item.thumbnail} alt={item.title} />
+                  <div>Product: {item.title}</div>
+                  <div>Brand: {item.brand}</div>
+                  <div>Price: ${item.price}</div>
+                  <div>Rating: {item.rating}</div>
+                </Link>
+              );
+            })
+          : null}
       </div>
     </>
   );

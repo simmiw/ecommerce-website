@@ -1,30 +1,23 @@
-.price-sorting {
-  margin-left: 8px;
-}
-
-.rating-sorting {
-  margin-left: 8px;
-}
-
-.filters {
+.all-filters {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 8px;
 }
 
-.list {
-  display: inline-block;
-  position: relative;
+.filters select {
+  margin-left: 10px;
   border: 1px solid #ccc;
 }
 
 .list-items {
   display: flex;
   flex-wrap: wrap;
+  gap: 8px;
 }
 
 .product-item {
-  width: 200px;
+  width: 240px;
   padding: 8px;
-  margin: 0px 4px 4px 0;
   border: 1px solid;
   img {
     width: 100%;
